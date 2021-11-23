@@ -5,17 +5,22 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>DATE</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/date.css" />
     </head>
     <body>
         <div class="wrap">
-            <h1>CLOCK</h1>
-            <div id="dateBox">
-                <div class="txt01">2021 / Nov. / 23</div>
-                <div class="txt02">tue</div>
+            <div id="digital">
+                <h1>CLOCK</h1>
+                <div id="dateBox">
+                    <div class="txt01">2021 / Nov. / 23</div>
+                    <div class="txt02">tue</div>
+                </div>
+                <div id="timeBox">AM 11 : 53 : 29</div>
             </div>
-            <div id="timeBox">AM 11 : 53 : 29</div>
             <div id="analog">
                 <span class="hour"></span>
                 <span class="min"></span>
@@ -40,10 +45,10 @@
         // 실행함수(); 함수를 페이지를 열때 즉시 실행할 수 있도록 선언
         setInterval(실행함수02, 1000);
 
-        const monthList = ["jan.", "feb.", "mar.", "apr.", "may.", "jun.", "jul.", "aug.", "sep.", "oct.", "nov.", "dec."];
+        const monthList = ["jan.", "feb.", "mar.", "apr.", "may.", "jun.", "jul.", "aug.", "sep.", "oct.", "Nov.", "dec."];
         const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
-        function addZero(num) {
+        const addZero = function (num) {
             let result;
             if (num < 10) {
                 result = "0" + num;
@@ -51,7 +56,7 @@
             }
             result = num;
             return result;
-        }
+        };
         const txt01 = document.querySelector("#dateBox .txt01");
         const txt02 = document.querySelector("#dateBox .txt02");
         const timeBox = document.querySelector("#timeBox");
@@ -65,16 +70,23 @@
             const month = now.getMonth(); // 월 0 ~ 11
             const date = now.getDate(); // 일
             const day = now.getDay(); // 요일
-            const hour = now.getHours(); //24시간
+            let hour = now.getHours(); //24시간
             const min = now.getMinutes(); // 분 0~59
             const sec = now.getSeconds(); // 초 0~59
+            let apm;
+            if (hour >= 12) {
+                apm = "PM";
+                hour = hour - 12;
+            } else {
+                apm = "AM";
+            }
 
             txt01.textContent = `${year} / ${monthList[month]} / ${date}`;
             txt02.textContent = days[day];
-            timeBox.textContent = `${addZero(hour)} : ${addZero(min)} : ${addZero(sec)}`;
+            timeBox.textContent = `${apm} ${addZero(hour)} : ${addZero(min)} : ${addZero(sec)}`;
 
-            itemHour.style.transform = `rotate(${hour * 30}deg)`;
-            itemMin.style.transform = `rotate(${min * 6}deg)`;
+            itemHour.style.transform = `rotate(${hour * 30 + min * 0.5}deg)`;
+            itemMin.style.transform = `rotate(${min * 6 + sec * 0.1}deg)`;
             itemSec.style.transform = `rotate(${sec * 6}deg)`;
         };
         showTime();

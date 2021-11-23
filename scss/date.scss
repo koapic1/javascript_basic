@@ -5,7 +5,42 @@
 }
 
 .wrap {
+    width: 640px;
+    margin: 100px auto;
+    font-family: "Noto Sans KR";
+    text-align: center;
+    #digital {
+        border: 2px solid #000;
+        width: 300px;
+        height: 300px;
+        margin: auto;
+        h1 {
+            font-size: $h3;
+            font-weight: 700;
+            padding: 30px;
+        }
+        #dateBox {
+            line-height: 1.5;
+            margin-bottom: 30px;
+            .txt01 {
+                font-size: $medium-size;
+                font-weight: 600;
+            }
+            .txt02 {
+                font-size: $normal-size;
+            }
+        }
+        #timeBox {
+            border: 3px solid darkslategray;
+            width: 200px;
+            padding: 20px 0;
+            margin: auto;
+            font-size: $normal-size;
+            border-radius: 15px;
+        }
+    }
     #analog {
+        margin: 100px auto;
         position: relative;
         width: 300px;
         height: 300px;
@@ -20,23 +55,23 @@
             transform-origin: 50% 100%;
         }
         .hour {
-            width: 20px;
+            width: 16px;
             height: 110px;
             background-color: crimson;
-            margin-left: -15px;
+            margin-left: -8px;
             transform: rotate(30deg);
         }
         .min {
             width: 10px;
-            height: 130px;
+            height: 120px;
             background-color: darkblue;
-            margin-left: -10px;
+            margin-left: -5px;
         }
         .sec {
-            width: 5px;
+            width: 2px;
             height: 140px;
             background-color: darkgreen;
-            margin-left: -5px;
+            margin-left: -1px;
         }
     }
 }
