@@ -45,17 +45,17 @@
         // 실행함수(); 함수를 페이지를 열때 즉시 실행할 수 있도록 선언
         setInterval(실행함수02, 1000);
 
-        const monthList = ["jan.", "feb.", "mar.", "apr.", "may.", "jun.", "jul.", "aug.", "sep.", "oct.", "Nov.", "dec."];
+        const monthList = ["jan.", "feb.", "mar.", "apr.", "may.", "jun.", "jul.", "aug.", "sep.", "oct.", "nov.", "dec."]; // 배열 0부터 시작
         const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
         const addZero = function (num) {
             let result;
             if (num < 10) {
-                result = "0" + num;
-                return result;
+                result = "0" + num; // num 이 10보다 작으면 true num 앞에 문자열 "0" 을 붙여라
+                return result; // 결과 출력
             }
-            result = num;
-            return result;
+            result = num; // 그 외 사항이 하나일 경우 else 생략 가능
+            return result; // 10 이상일 경우 true가 아니므로 원래 값을 출력
         };
         const txt01 = document.querySelector("#dateBox .txt01");
         const txt02 = document.querySelector("#dateBox .txt02");
@@ -75,21 +75,24 @@
             const sec = now.getSeconds(); // 초 0~59
             let apm;
             if (hour >= 12) {
+                // hour이 12 보다 크거나 같을 경우 apm은 "PM" 을 출력
                 apm = "PM";
-                hour = hour - 12;
+                hour = hour - 12; // 24시간 출력이 기본이므로 - 12 를 통해 12시간으로 출력 변경
             } else {
-                apm = "AM";
+                apm = "AM"; // 12보다 작을경우 apm은 "AM" 을 출력
             }
 
-            txt01.textContent = `${year} / ${monthList[month]} / ${date}`;
-            txt02.textContent = days[day];
-            timeBox.textContent = `${apm} ${addZero(hour)} : ${addZero(min)} : ${addZero(sec)}`;
+            txt01.innerHTML = `${year} / <span>${monthList[month]}<span> / ${date}`;
+            txt02.textContent = days[day]; // days[day] = [day] : 배열이 없을 경우 숫자로 표현됨 days : 위에 지정한 배열
+            timeBox.innerHTML = `${apm} ${addZero(hour)} : ${addZero(min)} : <span>${addZero(sec)}</span>`;
+            // .innerHTML : 출력물에 HTML요소를 삽입 CSS작업을 분리해서 사용 가능
 
             itemHour.style.transform = `rotate(${hour * 30 + min * 0.5}deg)`;
             itemMin.style.transform = `rotate(${min * 6 + sec * 0.1}deg)`;
             itemSec.style.transform = `rotate(${sec * 6}deg)`;
+            // .style : js에 css 요소를 적용
         };
-        showTime();
-        setInterval(showTime, 1000);
+        showTime(); //작성한 함수를 즉시 실행
+        setInterval(showTime, 1000); // 해당 함수를 1000ms (1초)의 시간으로 재실행 후 출력
     </script>
 </html>

@@ -25,6 +25,9 @@
             .txt01 {
                 font-size: $medium-size;
                 font-weight: 600;
+                span {
+                    text-transform: uppercase;
+                }
             }
             .txt02 {
                 font-size: $normal-size;
@@ -37,6 +40,9 @@
             margin: auto;
             font-size: $normal-size;
             border-radius: 15px;
+            span {
+                color: red;
+            }
         }
     }
     #analog {
