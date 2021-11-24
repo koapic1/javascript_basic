@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LOTTO</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/lotto.css" />
+        <script src="js/gsap/gsap.min.js"></script>
+    </head>
+    <body>
+        <h1>How Much</h1>
+        <div class="btns">
+            <label>
+                <input type="radio" name="lotto" id="" value="1" />
+                <span>1</span>
+            </label>
+            <label>
+                <input type="radio" name="lotto" id="" value="2" />
+                <span>2</span>
+            </label>
+            <label>
+                <input type="radio" name="lotto" id="" value="3" />
+                <span>3</span>
+            </label>
+            <label>
+                <input type="radio" name="lotto" id="" value="4" />
+                <span>4</span>
+            </label>
+            <label>
+                <input type="radio" name="lotto" id="" value="5" />
+                <span>5</span>
+            </label>
+        </div>
+        <div id="lottoPaper">
+            <!-- <ul>
+        <li>3</li>
+        <li>5</li>
+        <li>12</li>
+        <li>23</li>
+        <li>27</li>
+        <li>41</li>
+            </ul> -->
+        </div>
+    </body>
+    <script>
+        const lottoPaper = document.querySelector("#lottoPaper");
+
+        const makeLotto = () => {
+            const lotto = []; // 1~45까지 들어갈 배열
+            const myLotto = []; // 1~45에서 6개 랜덤으로 들어갈 배열
+            for (let i = 1; i < 46; i++) {
+                lotto.push(i); // 반복문 돌려서 lotto에 숫자 밀어넣기
+            }
+            for (let j = 0; j < 6; j++) {
+                const random = Math.floor(Math.random() * lotto.length); //1~45
+                const selected = lotto.splice(random, 1)[0];
+                myLotto.push(selected); // 6개 숫자를 랜덤으로 돌려서 myLotto에 밀어넣기
+                //console.log(selected);
+            }
+            myLotto.sort((a, b) => {
+                return a - b; // 출력된 숫자를 오름차순으로 솔팅
+            });
+            const ul = document.createElement("ul"); // ul을 생성
+            lottoPaper.appendChild(ul); // lottoPaper에 생성한 ul을 자식요소로 삽입
+            for (let k = 0; k < 6; k++) {
+                // 랜덤으로 나온 myLotto를 화면에 출력
+                const selected = myLotto[k];
+                let colors;
+                if (selected < 10) {
+                    colors = "yellow";
+                } else if (selected < 20) {
+                    colors = "blue";
+                } else if (selected < 30) {
+                    colors = "red";
+                } else if (selected < 40) {
+                    colors = "black";
+                } else {
+                    colors = "green";
+                }
+                ul.innerHTML += `
+        <li class="${colors}">${myLotto[k]}</li>`;
+            }
+        };
+        //makeLotto();
+
+        const radios = document.querySelectorAll("input[type='radio'][name='lotto']");
+        //console.log(radios);
+
+        for (let i = 0; i < radios.length; i++) {
+            radios[i].addEventListener("change", function () {
+                lottoPaper.innerHTML = "";
+                for (let j = 0; j < this.value; j++) {
+                    makeLotto();
+                }
+                gsap.from("#lottoPaper li", { scale: 0, ease: "elastic", duration: 1.5, stagger: 0.05 });
+                console.log(myLotto);
+            });
+        }
+    </script>
+</html>
