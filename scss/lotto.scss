@@ -26,24 +26,34 @@
             input:checked ~ span::after {
                 background-color: darkslategray;
                 border: none;
-                content: "\2713";
+                content: "";
                 color: $white-color;
                 // @include longShadow(darken(darkslategray, 10), right, 10);
             }
             span {
                 display: flex;
                 align-items: center;
+                justify-content: space-between;
                 user-select: none;
+                position: relative;
+                margin: 0 20px;
+                color: #fff;
+                font-size: 24px;
                 &::after {
                     content: "";
                     @include flexCenter();
                     overflow: hidden;
-                    width: 18px;
-                    height: 18px;
+                    width: 50px;
+                    height: 50px;
                     border: 2px solid $gray-color;
                     border-radius: 50%;
-                    margin-left: 6px;
                     box-sizing: border-box;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: #000;
+                    z-index: -1;
                 }
             }
         }
@@ -54,6 +64,7 @@
     height: 380px;
     margin: 50px auto;
     border: 5px solid darkslategray;
+    border-radius: 15px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
