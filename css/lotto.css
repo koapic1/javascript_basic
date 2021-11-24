@@ -1,6 +1,24 @@
-#lottoPaper { width: 400px; height: 400px; margin: 100px auto; border: 10px solid #d9d9d9; background-color: #fff; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; font-family: "Lexend", "Noto Sans KR"; }
+* { -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-#lottoPaper ul { display: -webkit-box; display: -ms-flexbox; display: flex; }
+.wrap { max-width: 480px; margin: auto; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; font-family: "Lexend", "Noto Sans KR"; }
+
+.wrap h1 { font-size: 32px; font-weight: 500; margin-top: 50px; }
+
+.wrap .btns { display: -webkit-box; display: -ms-flexbox; display: flex; margin-top: 50px; }
+
+.wrap .btns label { margin: 0 10px; }
+
+.wrap .btns label input { display: none; }
+
+.wrap .btns label input:checked ~ span::after { background-color: darkslategray; border: none; content: "\2713"; color: #fff; }
+
+.wrap .btns label span { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+
+.wrap .btns label span::after { content: ""; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; overflow: hidden; width: 18px; height: 18px; border: 2px solid #333; border-radius: 50%; margin-left: 6px; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+#lottoPaper { padding: 30px; height: 380px; margin: 50px auto; border: 5px solid darkslategray; background-color: #fff; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+
+#lottoPaper ul { display: -webkit-box; display: -ms-flexbox; display: flex; margin: 5px 0; }
 
 #lottoPaper ul li { width: 50px; height: 50px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; background-color: #000; color: #fff; border-radius: 50%; margin: 0 5px; overflow: hidden; font-weight: 500; font-size: 18px; }
 

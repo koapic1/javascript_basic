@@ -1,19 +1,67 @@
 @import "vars";
 @import "mixins";
-
+* {
+    box-sizing: border-box;
+}
+.wrap {
+    max-width: 480px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Lexend", "Noto Sans KR";
+    h1 {
+        font-size: 32px;
+        font-weight: 500;
+        margin-top: 50px;
+    }
+    .btns {
+        display: flex;
+        margin-top: 50px;
+        label {
+            margin: 0 10px;
+            input {
+                display: none;
+            }
+            input:checked ~ span::after {
+                background-color: darkslategray;
+                border: none;
+                content: "\2713";
+                color: $white-color;
+                // @include longShadow(darken(darkslategray, 10), right, 10);
+            }
+            span {
+                display: flex;
+                align-items: center;
+                user-select: none;
+                &::after {
+                    content: "";
+                    @include flexCenter();
+                    overflow: hidden;
+                    width: 18px;
+                    height: 18px;
+                    border: 2px solid $gray-color;
+                    border-radius: 50%;
+                    margin-left: 6px;
+                    box-sizing: border-box;
+                }
+            }
+        }
+    }
+}
 #lottoPaper {
-    width: 400px;
-    height: 400px;
-    margin: 100px auto;
-    border: 10px solid #d9d9d9;
+    padding: 30px;
+    height: 380px;
+    margin: 50px auto;
+    border: 5px solid darkslategray;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: "Lexend", "Noto Sans KR";
     ul {
         display: flex;
+        margin: 5px 0;
         li {
             width: 50px;
             height: 50px;
